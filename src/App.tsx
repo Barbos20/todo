@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { v1 } from "uuid";
 import { AddItemForm } from "./AddItemForm";
-import "./App.css";
 import { TaskType, Todolist } from "./Todolist";
+import {
+  AppBar,
+  Box,
+  Button,
+  Grid,
+  IconButton,
+  Toolbar,
+  Typography,
+} from "@mui/material";
+import "./App.css";
 
 export type filterValuesType = "all" | "active" | "completed";
-type TodolistType = {
+export type TodolistType = {
   id: string;
   title: string;
   filter: filterValuesType;
@@ -117,8 +126,31 @@ function App() {
   }
 
   return (
+    <div className="container">
+      <Box sx={{ flexGrow: 1 }}>
+        <AppBar position="static" >
+          <Toolbar>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              sx={{ mr: 2 }}
+            >
+              {/* <MenuIcon /> */}
+            </IconButton>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 2 }} >
+             TODOLIST
+            </Typography>
+            <Button color="inherit">Login</Button>
+          </Toolbar>
+        </AppBar>
+      </Box>
     <div className="App">
+      <Grid container>
       <AddItemForm addItem={addTodolist} />
+      </Grid>
+      <Grid container>
       {todolists.map((tl) => {
         let taskForTodolist = tasks[tl.id];
         if (tl.filter === "active") {
@@ -145,6 +177,8 @@ function App() {
           />
         );
       })}
+      </Grid>
+    </div>
     </div>
   );
 }

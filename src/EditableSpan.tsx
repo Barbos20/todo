@@ -1,8 +1,9 @@
+import { TextField } from "@mui/material";
 import React, { ChangeEvent, KeyboardEvent, useState } from "react";
 
 type EditableSpanPropsType = {
   title: string;
-  onChange:(newValue:string)=>void
+  onChange: (newValue: string) => void;
 };
 
 export function EditableSpan(props: EditableSpanPropsType) {
@@ -11,11 +12,11 @@ export function EditableSpan(props: EditableSpanPropsType) {
 
   const activateEditMode = () => {
     setEditMode(true);
-    setTitle(props.title)
+    setTitle(props.title);
   };
   const activateViewMode = () => {
     setEditMode(false);
-    props.onChange(title)
+    props.onChange(title);
   };
   const onChangeTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
     setTitle(e.currentTarget.value);
@@ -28,7 +29,8 @@ export function EditableSpan(props: EditableSpanPropsType) {
   return (
     <>
       {editMode ? (
-        <input
+        <TextField
+          className="input"
           value={title}
           onChange={onChangeTitleHandler}
           onBlur={activateViewMode}
