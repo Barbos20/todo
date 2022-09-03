@@ -1,46 +1,47 @@
-import React, { ChangeEvent, KeyboardEvent, useState } from "react";
-import { Fab, TextField } from "@mui/material";
-import AddIcon from "@mui/icons-material/Add";
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import {Box, Button, FormControl, IconButton, TextField} from '@material-ui/core';
+import {AddBox} from '@material-ui/icons';
 
 type AddItemFormPropsType = {
-  addItem: (title: string) => void;
-};
+    addItem: (title: string) => void
+}
 
 export function AddItemForm(props: AddItemFormPropsType) {
-  const [newTaskTitile, setNewTaskTitile] = useState("");
-  const [error, setError] = useState<string | null>(null);
 
-  const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewTaskTitile(e.currentTarget.value);
-  };
-  const addTask = () => {
-    if (newTaskTitile.trim() !== "") {
-      props.addItem(newTaskTitile.trim());
-      setNewTaskTitile("");
-    } else {
-      setError("Title is required");
+    let [title, setTitle] = useState("")
+    let [error, setError] = useState<string | null>(null)
+
+    const addItem = () => {
+        if (title.trim() !== "") {
+            props.addItem(title);
+            setTitle("");
+        } else {
+            setError("Title is required");
+        }
     }
-  };
-  const onKeyPressHendler = (e: KeyboardEvent<HTMLInputElement>) => {
-    setError(null);
-    if (e.charCode === 13) {
-      addTask();
+
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+        setTitle(e.currentTarget.value)
     }
-  };
-  return (
-    <div>
-      <TextField
-        label="Task"
-        variant="outlined"
-        value={newTaskTitile}
-        onChange={onChangeHandler}
-        onKeyPress={onKeyPressHendler}
-        className={error ? "error" : "input"}
-      />
-      <Fab color="primary" aria-label="add" onClick={addTask}>
-        <AddIcon />
-      </Fab>
-      {error && <div className="error-message">{error}</div>}
+
+    const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+        setError(null);
+        if (e.charCode === 13) {
+            addItem();
+        }
+    }
+
+    return <div>
+        <TextField variant="outlined"
+                   error={!!error}
+                   value={title}
+                   onChange={onChangeHandler}
+                   onKeyPress={onKeyPressHandler}
+                   label="Title"
+                   helperText={error}
+        />
+        <IconButton color="primary" onClick={addItem}>
+            <AddBox />
+        </IconButton>
     </div>
-  );
 }
