@@ -1,5 +1,5 @@
-import { TasksStateType } from "../App";
 import { v1 } from "uuid";
+import { TasksStateType } from "../AppWithRedux";
 import {
   AddTodolistActionType,
   RemoveTodolistActionType,
@@ -38,7 +38,7 @@ type ActionsType =
   | AddTodolistActionType
   | RemoveTodolistActionType;
 
-const initialState:TasksStateType = {
+const initialState: TasksStateType = {
   [todolistId1]: [
     { id: v1(), title: "HTML&CSS", isDone: true },
     { id: v1(), title: "JS", isDone: true },
@@ -50,7 +50,7 @@ const initialState:TasksStateType = {
 };
 
 export const tasksReducer = (
-  state: TasksStateType=initialState,
+  state: TasksStateType = initialState,
   action: ActionsType
 ): TasksStateType => {
   switch (action.type) {
@@ -73,12 +73,9 @@ export const tasksReducer = (
       const stateCopy = { ...state };
 
       let tasks = stateCopy[action.todolistId];
-      // найдём нужную таску:
-      let task = tasks.find((t) => t.id === action.taskId);
-      //изменим таску, если она нашлась
-      if (task) {
-        task.isDone = action.isDone;
-      }
+      stateCopy[action.todolistId] = tasks.map((t) =>
+        t.id === action.taskId ? { ...t, isDone: action.isDone } : t
+      );
       return stateCopy;
     }
     case "CHANGE-TASK-TITLE": {
