@@ -1,8 +1,8 @@
 import { v1 } from "uuid";
 import { TasksStateType } from "../AppWithRedux";
 import {
-  AddTodolistActionType,
-  RemoveTodolistActionType,
+  // AddTodolistActionType,
+  // RemoveTodolistActionType,
   todolistId1,
   todolistId2,
 } from "./todolists-reducer-toolkit";
@@ -35,8 +35,8 @@ type ActionsType =
   | AddTaskActionType
   | ChangeTaskStatusActionType
   | ChangeTaskTitleActionType
-  | AddTodolistActionType
-  | RemoveTodolistActionType;
+  // | AddTodolistActionType
+  // | RemoveTodolistActionType;
 
 const initialState: TasksStateType = {
   [todolistId1]: [
@@ -90,18 +90,18 @@ export const tasksReducer = (
       }
       return stateCopy;
     }
-    case "ADD-TODOLIST": {
-      const stateCopy = { ...state };
+    // case "ADD-TODOLIST": {
+    //   const stateCopy = { ...state };
 
-      stateCopy[action.todolistId] = [];
+    //   stateCopy[action.todolistId] = [];
 
-      return stateCopy;
-    }
-    case "REMOVE-TODOLIST": {
-      const stateCopy = { ...state };
-      delete stateCopy[action.id];
-      return stateCopy;
-    }
+    //   return stateCopy;
+    // }
+    // case "REMOVE-TODOLIST": {
+    //   const stateCopy = { ...state };
+    //   delete stateCopy[action.id];
+    //   return stateCopy;
+    // }
     default:
       return state;
   }

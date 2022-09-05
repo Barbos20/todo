@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "./App.css";
 import { TaskType, Todolist } from "./Todolist";
 import { AddItemForm } from "./AddItemForm";
@@ -40,21 +40,21 @@ function AppWithRedux() {
     (state) => state.todolist
   );
 
-  function changeFilter(todolistId: string, value: FilterValuesType) {
+  const changeFilter= useCallback((todolistId: string, value: FilterValuesType)=> {
     dispatch(changeTodolistFilterAC(todolistId, value));
-  }
+  },[dispatch])
 
-  function removeTodolist(id: string) {
+  const removeTodolist = useCallback((id: string) => {
     dispatch(removeTodolistAC(id));
-  }
+  },[dispatch])
 
-  function changeTodolistTitle(id: string, title: string) {
+  const changeTodolistTitle = useCallback((id: string, title: string)=> {
     dispatch(changeTodolistTitleAC(id, title));
-  }
+  },[dispatch])
 
-  function addTodolist(title: string) {
-    dispatch(addTodolistAC(title));
-  }
+  const addTodolist = useCallback((title: string) => {
+    dispatch(addTodolistAC(title)); 
+  },[dispatch]);
 
   return (
     <div className="App">
@@ -75,9 +75,8 @@ function AppWithRedux() {
         </Grid>
         <Grid container spacing={3}>
           {todolists.map((tl) => {
-
             return (
-              <Grid item>
+              <Grid item key={tl.id}>
                 <Paper style={{ padding: "10px" }}>
                   <Todolist
                     key={tl.id}
