@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import "./App.css";
 import { Todolist } from "./Todolist";
 import { AddItemForm } from "./AddItemForm";
@@ -13,47 +13,45 @@ import Paper from "@mui/material/Paper";
 import { Menu } from "@mui/icons-material";
 import {
   addTodolistAC,
+  addTodolistTC,
   changeTodolistFilterAC,
   changeTodolistTitleAC,
+  fetchTodolistsTC,
   FilterValuesType,
-  removeTodolistAC,
+  removeTodolistTC,
   TodolistDomainType,
 } from "./state/todolists-reducer";
 import {
-  addTaskAC,
+  addTaskTC,
   changeTaskStatusAC,
   changeTaskTitleAC,
-  removeTaskAC,
+  removeTaskTC,
 } from "./state/tasks-reducer";
-import { useDispatch, useSelector } from "react-redux";
-import { AppRootStateType } from "./state/store";
-import { TaskStatuses, TaskType} from "./api/todolists-api";
+import { useSelector } from "react-redux";
+import { AppRootStateType, useDispatchType } from "./state/store";
+import { TaskStatuses, TaskType } from "./api/todolists-api";
 
 export type TasksStateType = {
   [key: string]: Array<TaskType>;
 };
 
-function App() {
+const App = React.memo(function () {
   const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(
     (state) => state.todolists
   );
   const tasks = useSelector<AppRootStateType, TasksStateType>(
     (state) => state.tasks
   );
-  const dispatch = useDispatch();
 
-  const removeTask = useCallback(
-    function (id: string, todolistId: string) {
-      const action = removeTaskAC(id, todolistId);
-      dispatch(action);
-    },
-    [dispatch]
-  );
+  const dispatch = useDispatchType();
+
+  const removeTask = useCallback(function (id: string, todolistId: string) {
+    dispatch(removeTaskTC(id, todolistId));
+  }, [dispatch]);
 
   const addTask = useCallback(
     function (title: string, todolistId: string) {
-      const action = addTaskAC(title, todolistId);
-      dispatch(action);
+      dispatch(addTaskTC(title, todolistId));
     },
     [dispatch]
   );
@@ -84,8 +82,7 @@ function App() {
 
   const removeTodolist = useCallback(
     function (id: string) {
-      const action = removeTodolistAC(id);
-      dispatch(action);
+      dispatch(removeTodolistTC(id));
     },
     [dispatch]
   );
@@ -100,11 +97,14 @@ function App() {
 
   const addTodolist = useCallback(
     (title: string) => {
-      const action = addTodolistAC(title);
-      dispatch(action);
+      dispatch(addTodolistTC(title));
     },
     [dispatch]
   );
+
+  useEffect(() => {
+    dispatch(fetchTodolistsTC());
+  }, [dispatch]);
 
   return (
     <div className="App">
@@ -149,6 +149,6 @@ function App() {
       </Container>
     </div>
   );
-}
+})
 
 export default App;

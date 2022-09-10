@@ -87,8 +87,8 @@ export const todolistsAPI = {
   getTasks(todolistId: string) {
     return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`);
   },
-  createTasks(todolistId:string,title: string) {
-    return instance.post<TaskType>(`todo-lists/${todolistId}/tasks`, {
+  createTasks(title: string,todolistId:string) {
+    return instance.post<ResponseType<{item:TaskType}>>(`todo-lists/${todolistId}/tasks`, {
       title,
     });
   },
@@ -98,7 +98,7 @@ export const todolistsAPI = {
     );
   },
   updateTasks(todolistId: string, taskId: string, model: UpdateTaskModalType) {
-    return instance.put<UpdateTaskModalType>(`todo-lists/${todolistId}/tasks/${taskId}`, {
+    return instance.put<ResponseType<UpdateTaskModalType>>(`todo-lists/${todolistId}/tasks/${taskId}`, {
       model,
     });
   },

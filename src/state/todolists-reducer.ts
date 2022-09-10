@@ -1,5 +1,6 @@
+import { todolistsAPI, TodolistType } from "./../api/todolists-api";
 import { v1 } from "uuid";
-import { TodolistType } from "../api/todolists-api";
+import { Dispatch } from "redux";
 
 export type RemoveTodolistActionType = {
   type: "REMOVE-TODOLIST";
@@ -7,8 +8,7 @@ export type RemoveTodolistActionType = {
 };
 export type AddTodolistActionType = {
   type: "ADD-TODOLIST";
-  title: string;
-  todolistId: string;
+  todolist: TodolistType
 };
 export type ChangeTodolistTitleActionType = {
   type: "CHANGE-TODOLIST-TITLE";
@@ -20,11 +20,19 @@ export type ChangeTodolistFilterActionType = {
   id: string;
   filter: FilterValuesType;
 };
-type ActionsType =
+export type SetTodolistsActionType = {
+  type: "SET-TODOLISTS";
+  todolists: TodolistType[];
+};
+
+
+
+export type ActionsTodolistType =
   | RemoveTodolistActionType
   | AddTodolistActionType
   | ChangeTodolistTitleActionType
-  | ChangeTodolistFilterActionType;
+  | ChangeTodolistFilterActionType
+  | SetTodolistsActionType;
 
 const initialState: Array<TodolistDomainType> = [];
 
@@ -35,23 +43,15 @@ export type TodolistDomainType = TodolistType & {
 
 export const todolistsReducer = (
   state: Array<TodolistDomainType> = initialState,
-  action: ActionsType
+  action: ActionsTodolistType
 ): Array<TodolistDomainType> => {
   switch (action.type) {
     case "REMOVE-TODOLIST": {
       return state.filter((tl) => tl.id !== action.id);
     }
     case "ADD-TODOLIST": {
-      return [
-        {
-          id: action.todolistId,
-          title: action.title,
-          filter: "all",
-          addedDate: "",
-          order: 0,
-        },
-        ...state,
-      ];
+      const newTodolist:TodolistDomainType = {...action.todolist, filter:'all'}
+      return [newTodolist, ...state]
     }
     case "CHANGE-TODOLIST-TITLE": {
       const todolist = state.find((tl) => tl.id === action.id);
@@ -69,6 +69,11 @@ export const todolistsReducer = (
       }
       return [...state];
     }
+    case "SET-TODOLISTS": {
+      return action.todolists.map((tl) => {
+        return { ...tl, filter: "all" };
+      });
+    }
     default:
       return state;
   }
@@ -79,8 +84,8 @@ export const removeTodolistAC = (
 ): RemoveTodolistActionType => {
   return { type: "REMOVE-TODOLIST", id: todolistId };
 };
-export const addTodolistAC = (title: string): AddTodolistActionType => {
-  return { type: "ADD-TODOLIST", title: title, todolistId: v1() };
+export const addTodolistAC = (todolist: TodolistType): AddTodolistActionType => {
+  return { type: "ADD-TODOLIST", todolist};
 };
 export const changeTodolistTitleAC = (
   id: string,
@@ -94,3 +99,30 @@ export const changeTodolistFilterAC = (
 ): ChangeTodolistFilterActionType => {
   return { type: "CHANGE-TODOLIST-FILTER", id: id, filter: filter };
 };
+export const SetTodolistsAC = (
+  todolists: TodolistType[]
+): SetTodolistsActionType => {
+  return { type: "SET-TODOLISTS", todolists };
+};
+//ThankCreator
+export const fetchTodolistsTC = () => {
+  return (dispatch: Dispatch) => {
+    todolistsAPI.getTodolists().then((res) => {
+      dispatch(SetTodolistsAC(res.data));
+    });
+  };
+};
+export const removeTodolistTC = (todolistId: string)=>{
+  return (dispatch:Dispatch)=>{
+    todolistsAPI.deleteTodolist(todolistId).then((res)=>{
+      dispatch(removeTodolistAC(todolistId))
+    })
+  }
+}
+export const addTodolistTC = (title: string)=>{
+  return (dispatch:Dispatch)=>{
+    todolistsAPI.createTodolists(title).then((res)=>{
+      dispatch(removeTodolistAC(title))
+    })
+  }
+}
