@@ -1741,7 +1741,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/react@npm:^11.10.0":
+"@emotion/react@npm:^11.10.4":
   version: 11.10.4
   resolution: "@emotion/react@npm:11.10.4"
   dependencies:
@@ -1785,7 +1785,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@emotion/styled@npm:^11.10.0":
+"@emotion/styled@npm:^11.10.4":
   version: 11.10.4
   resolution: "@emotion/styled@npm:11.10.4"
   dependencies:
@@ -2184,7 +2184,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/material@npm:^5.10.2":
+"@mui/material@npm:^5.10.4":
   version: 5.10.4
   resolution: "@mui/material@npm:5.10.4"
   dependencies:
@@ -8919,11 +8919,11 @@ __metadata:
   resolution: "it-incubator-todolist-ts@workspace:."
   dependencies:
     "@babel/core": ^7.2.2
-    "@emotion/react": ^11.10.0
-    "@emotion/styled": ^11.10.0
+    "@emotion/react": ^11.10.4
+    "@emotion/styled": ^11.10.4
     "@mdx-js/react": ^1.6.22
     "@mui/icons-material": ^5.10.2
-    "@mui/material": ^5.10.2
+    "@mui/material": ^5.10.4
     "@reduxjs/toolkit": ^1.8.5
     "@testing-library/jest-dom": ^4.2.4
     "@testing-library/react": ^9.3.2
