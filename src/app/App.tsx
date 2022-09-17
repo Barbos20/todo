@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { TodolistsList } from "../TodolistsList/TodolistsList";
+import { TodolistsList } from "../features/TodolistsList/TodolistsList";
 
 // You can learn about the difference by reading this guide on minimizing bundle size.
 // https://mui.com/guides/minimizing-bundle-size/
@@ -17,6 +17,8 @@ import { ErrorSnackbars } from "../components/SnackBar/SnackBar";
 import { AppRootStateType } from "./store";
 import { RequestStatusType } from "./app-reducer";
 import { useSelector } from "react-redux";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Login } from "../features/Login/Login";
 
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
   );
 
   return (
+    <BrowserRouter>
     <div className="App">
       <ErrorSnackbars />
       <AppBar position="static">
@@ -38,9 +41,14 @@ function App() {
         {status === "loading" && <LinearDeterminate />}
       </AppBar>
       <Container fixed>
-        <TodolistsList/>
+        <Routes>
+        <Route path={"/"} element={<TodolistsList/>}/>
+        <Route path={"/login"} element={<Login/>}/>
+        </Routes>
+        {/* <TodolistsList/> */}
       </Container>
     </div>
+    </BrowserRouter>
   );
 }
 

@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { TaskStatuses } from "../api/todolists-api";
-import { AppRootStateType, useDispatchType } from "../app/store";
-import { AddItemForm } from "../components/AddItemForm/AddItemForm";
+import { TaskStatuses } from "../../api/todolists-api";
+import { AppRootStateType, useDispatchType } from "../../app/store";
+import { AddItemForm } from "../../components/AddItemForm/AddItemForm";
 import {
   addTaskTC,
   removeTaskTC,

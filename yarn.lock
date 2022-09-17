@@ -2364,6 +2364,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@remix-run/router@npm:1.0.0":
+  version: 1.0.0
+  resolution: "@remix-run/router@npm:1.0.0"
+  checksum: 2e7543c71432c49bc0e6cab287ce561c56bf33ad91f929cdbf4c9bd08636bc676f2bf6b048a95fc1f5c74c40600ab59ce248d1de34a1acb7c2e43f567b0e96b5
+  languageName: node
+  linkType: hard
+
 "@sheerun/mutationobserver-shim@npm:^0.3.2":
   version: 0.3.3
   resolution: "@sheerun/mutationobserver-shim@npm:0.3.3"
@@ -2631,6 +2638,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/history@npm:^4.7.11":
+  version: 4.7.11
+  resolution: "@types/history@npm:4.7.11"
+  checksum: c92e2ba407dcab0581a9afdf98f533aa41b61a71133420a6d92b1ca9839f741ab1f9395b17454ba5b88cb86020b70b22d74a1950ccfbdfd9beeaa5459fdc3464
+  languageName: node
+  linkType: hard
+
 "@types/hoist-non-react-statics@npm:^3.3.0, @types/hoist-non-react-statics@npm:^3.3.1":
   version: 3.3.1
   resolution: "@types/hoist-non-react-statics@npm:3.3.1"
@@ -2761,6 +2775,27 @@ __metadata:
     hoist-non-react-statics: ^3.3.0
     redux: ^4.0.0
   checksum: 6582246581331ac7fbbd44aa1f1c136c8a9c8febbcf462432ac81302263308c21e1a2e7868beb7f73bbcb52a8e67935d133cb37f5bdcb6564eaff3a811805101
+  languageName: node
+  linkType: hard
+
+"@types/react-router-dom@npm:^5.3.3":
+  version: 5.3.3
+  resolution: "@types/react-router-dom@npm:5.3.3"
+  dependencies:
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+    "@types/react-router": "*"
+  checksum: 28c4ea48909803c414bf5a08502acbb8ba414669b4b43bb51297c05fe5addc4df0b8fd00e0a9d1e3535ec4073ef38aaafac2c4a2b95b787167d113bc059beff3
+  languageName: node
+  linkType: hard
+
+"@types/react-router@npm:*":
+  version: 5.1.19
+  resolution: "@types/react-router@npm:5.1.19"
+  dependencies:
+    "@types/history": ^4.7.11
+    "@types/react": "*"
+  checksum: 3536c3dec7af1f12fed2bea246eb143bd893ee66d4e58c1d3fe734cbd67d8a0aedac0bba9255c58fc69dbd32ae17ad280d6866916aee32653a705178e4a544dc
   languageName: node
   linkType: hard
 
@@ -5696,6 +5731,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"deepmerge@npm:^2.1.1":
+  version: 2.2.1
+  resolution: "deepmerge@npm:2.2.1"
+  checksum: 284b71065079e66096229f735a9a0222463c9ca9ee9dda7d5e9a0545bf254906dbc7377e3499ca3b2212073672b1a430d80587993b43b87d8de17edc6af649a8
+  languageName: node
+  linkType: hard
+
 "default-gateway@npm:^4.2.0":
   version: 4.2.0
   resolution: "default-gateway@npm:4.2.0"
@@ -7210,6 +7252,23 @@ __metadata:
     combined-stream: ^1.0.6
     mime-types: ^2.1.12
   checksum: 10c1780fa13dbe1ff3100114c2ce1f9307f8be10b14bf16e103815356ff567b6be39d70fc4a40f8990b9660012dc24b0f5e1dde1b6426166eb23a445ba068ca3
+  languageName: node
+  linkType: hard
+
+"formik@npm:^2.2.9":
+  version: 2.2.9
+  resolution: "formik@npm:2.2.9"
+  dependencies:
+    deepmerge: ^2.1.1
+    hoist-non-react-statics: ^3.3.0
+    lodash: ^4.17.21
+    lodash-es: ^4.17.21
+    react-fast-compare: ^2.0.1
+    tiny-warning: ^1.0.2
+    tslib: ^1.10.0
+  peerDependencies:
+    react: ">=16.8.0"
+  checksum: f07f80eee8423b4c5560546c48c4093c47530dae7d931a4e0d947d68ae1aab94291b1bf2e99ecaa5854ee50593b415fb5724c624c787338f0577f066009e8812
   languageName: node
   linkType: hard
 
@@ -8934,12 +8993,15 @@ __metadata:
     "@types/react": ^16.9.0
     "@types/react-dom": ^16.9.0
     "@types/react-redux": ^7.1.24
+    "@types/react-router-dom": ^5.3.3
     "@types/redux": ^3.6.0
     "@types/uuid": ^8.3.4
     axios: ^0.27.2
+    formik: ^2.2.9
     react: ^16.13.1
     react-dom: ^16.13.1
     react-redux: ^8.0.2
+    react-router-dom: ^6.4.0
     react-scripts: 3.4.1
     redux: ^4.2.0
     redux-thunk: ^2.4.1
@@ -9865,6 +9927,13 @@ __metadata:
   dependencies:
     p-locate: ^4.1.0
   checksum: 83e51725e67517287d73e1ded92b28602e3ae5580b301fe54bfb76c0c723e3f285b19252e375712316774cf52006cb236aed5704692c32db0d5d089b69696e30
+  languageName: node
+  linkType: hard
+
+"lodash-es@npm:^4.17.21":
+  version: 4.17.21
+  resolution: "lodash-es@npm:4.17.21"
+  checksum: 05cbffad6e2adbb331a4e16fbd826e7faee403a1a04873b82b42c0f22090f280839f85b95393f487c1303c8a3d2a010048bf06151a6cbe03eee4d388fb0a12d2
   languageName: node
   linkType: hard
 
@@ -12743,6 +12812,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-fast-compare@npm:^2.0.1":
+  version: 2.0.4
+  resolution: "react-fast-compare@npm:2.0.4"
+  checksum: 06046595f90a4e3e3a56f40a8078c00aa71bdb064ddb98343f577f546aa22e888831fd45f009c93b34707cc842b4c637737e956fd13d6f80607ee92fb9cf9a1c
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.12.0, react-is@npm:^16.13.1, react-is@npm:^16.7.0, react-is@npm:^16.8.4":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -12786,6 +12862,29 @@ __metadata:
     redux:
       optional: true
   checksum: 44c1739c45dad04ecc65a290897c73828ff0bf43f2b7618ed5ef6d4ceecedae38e76cecd189a5ecedf579c28ead05427bc000fb45ad30b9fcd5c2be27cd3ac73
+  languageName: node
+  linkType: hard
+
+"react-router-dom@npm:^6.4.0":
+  version: 6.4.0
+  resolution: "react-router-dom@npm:6.4.0"
+  dependencies:
+    react-router: 6.4.0
+  peerDependencies:
+    react: ">=16.8"
+    react-dom: ">=16.8"
+  checksum: 5595bb168ce4a67ff72c1e3c1a9509bd1931da00f19c29d325b68a5a189577342d071a3c25f7c11dc7b489bcd48144206e4bc65e5be15ee9bc92515f0c1a0737
+  languageName: node
+  linkType: hard
+
+"react-router@npm:6.4.0":
+  version: 6.4.0
+  resolution: "react-router@npm:6.4.0"
+  dependencies:
+    "@remix-run/router": 1.0.0
+  peerDependencies:
+    react: ">=16.8"
+  checksum: d2bc04f9a5a931256f35217cbbb0da7047bb5368831d300153155222b2994c9a263f598fe2ef213d530663b86cef59a9bef1912f60bd11779214794164fa290c
   languageName: node
   linkType: hard
 
@@ -14768,6 +14867,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tiny-warning@npm:^1.0.2":
+  version: 1.0.3
+  resolution: "tiny-warning@npm:1.0.3"
+  checksum: da62c4acac565902f0624b123eed6dd3509bc9a8d30c06e017104bedcf5d35810da8ff72864400ad19c5c7806fc0a8323c68baf3e326af7cb7d969f846100d71
+  languageName: node
+  linkType: hard
+
 "tmp@npm:^0.0.33":
   version: 0.0.33
   resolution: "tmp@npm:0.0.33"
@@ -14884,7 +14990,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^1.8.1, tslib@npm:^1.9.0":
+"tslib@npm:^1.10.0, tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
   checksum: dbe628ef87f66691d5d2959b3e41b9ca0045c3ee3c7c7b906cc1e328b39f199bb1ad9e671c39025bd56122ac57dfbf7385a94843b1cc07c60a4db74795829acd

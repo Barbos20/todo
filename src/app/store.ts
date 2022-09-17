@@ -1,8 +1,9 @@
+import { ActionsLogType } from './../features/Login/login-reducer';
 import { useDispatch } from "react-redux";
 import { applyMiddleware, combineReducers, legacy_createStore as createStore } from "redux";
 import thunkMiddleware, { ThunkDispatch } from "redux-thunk";
-import { ActionsTasksType, tasksReducer } from "../TodolistsList/tasks-reducer";
-import { ActionsTodolistsType, todolistsReducer } from "../TodolistsList/todolists-reducer";
+import { ActionsTasksType, tasksReducer } from "../features/TodolistsList/tasks-reducer";
+import { ActionsTodolistsType, todolistsReducer } from "../features/TodolistsList/todolists-reducer";
 import { ActionsAppType, appReducer } from "./app-reducer";
 
 // объединяя reducer-ы с помощью combineReducers,
@@ -19,7 +20,8 @@ export type AppRootStateType = ReturnType<typeof rootReducer>;
 export type AppActionType =
   | ActionsTasksType
   | ActionsTodolistsType
-  | ActionsAppType;
+  | ActionsAppType
+  | ActionsLogType;
 export type TypedDispatch = ThunkDispatch<AppRootStateType, any, AppActionType>;
 export const useDispatchType = () => {
   return useDispatch<TypedDispatch>();

@@ -5,10 +5,10 @@ import {
   TaskType,
   todolistsAPI,
   UpdateTaskModelType
-} from "../api/todolists-api";
-import { AppRootStateType } from "../app/store";
-import { hendleServerAppError, hendleServerNetworkError } from "../utils/error-utils";
-import { setStatusAC } from "./../app/app-reducer";
+} from "../../api/todolists-api";
+import { AppRootStateType } from "../../app/store";
+import { hendleServerAppError, hendleServerNetworkError } from "../../utils/error-utils";
+import { setStatusAC } from "../../app/app-reducer";
 import {
   AddTodolistActionType,
   RemoveTodolistActionType,
