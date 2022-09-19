@@ -1,3 +1,4 @@
+import { hendleServerAppError } from './../../utils/error-utils';
 import { Dispatch } from "redux";
 import { todolistsAPI, TodolistType } from "../../api/todolists-api";
 import { RequestStatusType, setStatusAC } from "../../app/app-reducer";
@@ -75,7 +76,10 @@ export const fetchTodolistsTC = () => {
     todolistsAPI.getTodolists().then((res) => {
       dispatch(setTodolistsAC(res.data));
       dispatch(setStatusAC("succeeded"));
-    });
+    })
+    .catch(error => {
+      hendleServerAppError(error, dispatch)
+    })
   };
 };
 export const removeTodolistTC = (todolistId: string) => {

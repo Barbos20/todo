@@ -4,7 +4,7 @@ const instance = axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.1/',
     withCredentials: true,
     headers: {
-        'API-KEY': 'f1d37d48-4174-4346-92a7-9fb12c13fb2c'
+        'API-KEY': '5956fca6-d041-4a10-9654-9c72d60d7a12'
     }
 })
 
@@ -45,6 +45,14 @@ export type LoginParamsType ={
 export const authAPI = {
     login(data: LoginParamsType){
         const promise = instance.post<ResponseType<{userId?:number}>>('auth/login',data)
+        return promise
+    },
+    logout(){
+        const promise = instance.delete<ResponseType<{userId?:number}>>('auth/login')
+        return promise
+    },
+    me(){
+        const promise = instance.get<ResponseType<{id:number, email:string, login:string}>>('auth/me')
         return promise
     }
 }
