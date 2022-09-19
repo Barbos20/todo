@@ -9,7 +9,7 @@ import { Task } from "./Task/Task";
 import { Delete } from "@mui/icons-material";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
-import { useDispatchType } from "../../../app/store";
+import { useDispatch } from "react-redux";
 
 type PropsType = {
   todolist: TodolistDomainType
@@ -32,10 +32,10 @@ type PropsType = {
 };
 
 export const Todolist = React.memo(function (props: PropsType) {
-  const dispatch = useDispatchType();
+  const dispatch = useDispatch();
   useEffect(() => {
-    const thunk = fetchTasksTC(props.todolist.id);
-    dispatch(thunk);
+   
+    dispatch(fetchTasksTC(props.todolist.id));
   }, []);
 
   const addTask = useCallback(

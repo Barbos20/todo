@@ -3,40 +3,34 @@ import { setStatusAC } from "../../app/app-reducer";
 import { hendleServerAppError } from "../../utils/error-utils";
 import { authAPI, LoginParamsType } from "../../api/todolists-api";
 import { hendleServerNetworkError } from "../../utils/error-utils";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-const initialState: InitialStateType = {
+const initialState = {
   isLoggedIn: false,
 };
 
-export const authReducer = (
-  state: InitialStateType = initialState,
-  action: ActionsLogType
-): InitialStateType => {
-  switch (action.type) {
-    case "login/SET-IS-LOGGED-IN":
-      return { ...state, isLoggedIn: action.value };
-    default:
-      return state;
-  }
-};
+ const slice = createSlice({
+  name: "auth",
+  initialState: initialState,
+  reducers: {
+    setIsLoggedIn(state, action: PayloadAction<{ value: boolean }>) {
+      state.isLoggedIn = action.payload.value;
+    },
+  },
+});
 
-// actions
-
-export const setIsLoggedIn = (value: boolean) =>
-  ({
-    type: "login/SET-IS-LOGGED-IN",
-    value,
-  } as const);
+export const authReducer = slice.reducer;
+export const { setIsLoggedIn } = slice.actions;
 
 // thunks
 export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
-  dispatch(setStatusAC("loading"));
+  dispatch(setStatusAC({status:"loading"}));
   authAPI
     .login(data)
     .then((res) => {
       if (res.data.resultCode === 0) {
-        dispatch(setIsLoggedIn(true));
-        dispatch(setStatusAC("succeeded"));
+        dispatch(setIsLoggedIn({ value: true }));
+        dispatch(setStatusAC({status:"succeeded"}));
       } else {
         hendleServerAppError(res.data, dispatch);
       }
@@ -46,13 +40,13 @@ export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch) => {
     });
 };
 export const logoutTC = () => (dispatch: Dispatch) => {
-  dispatch(setStatusAC("loading"));
+  dispatch(setStatusAC({status:"loading"}));
   authAPI
     .logout()
     .then((res) => {
       if (res.data.resultCode === 0) {
-        dispatch(setIsLoggedIn(false));
-        dispatch(setStatusAC("succeeded"));
+        dispatch(setIsLoggedIn({ value: false }));
+        dispatch(setStatusAC({status:"succeeded"}));
       } else {
         hendleServerAppError(res.data, dispatch);
       }
@@ -60,10 +54,4 @@ export const logoutTC = () => (dispatch: Dispatch) => {
     .catch((error) => {
       hendleServerNetworkError(error, dispatch);
     });
-};
-
-// types
-export type ActionsLogType = ReturnType<typeof setIsLoggedIn>;
-type InitialStateType = {
-  isLoggedIn: boolean;
 };

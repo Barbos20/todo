@@ -79,31 +79,31 @@ export const setTasksAC = (tasks: Array<TaskType>, todolistId: string) =>
 
 // thunks
 export const fetchTasksTC = (todolistId: string) => (dispatch: Dispatch) => {
-  dispatch(setStatusAC("loading"));
+  dispatch(setStatusAC({status:"loading"}));
   todolistsAPI.getTasks(todolistId).then((res) => {
     const tasks = res.data.items;
     dispatch(setTasksAC(tasks, todolistId));
-    dispatch(setStatusAC("succeeded"));
+    dispatch(setStatusAC({status:"succeeded"}));
   });
 };
 export const removeTaskTC =
   (taskId: string, todolistId: string) => (dispatch: Dispatch) => {
-    dispatch(setStatusAC("loading"));
+    dispatch(setStatusAC({status:"loading"}));
     todolistsAPI.deleteTask(todolistId, taskId).then((res) => {
       dispatch(removeTaskAC(taskId, todolistId));
-      dispatch(setStatusAC("succeeded"));
+      dispatch(setStatusAC({status:"succeeded"}));
     });
   };
 export const addTaskTC =
   (title: string, todolistId: string) => (dispatch: Dispatch) => {
-    dispatch(setStatusAC("loading"));
+    dispatch(setStatusAC({status:"loading"}));
     todolistsAPI
       .createTask(todolistId, title)
       .then((res) => {
         if (res.data.resultCode === 0) {
           const task = res.data.data.item;
           dispatch(addTaskAC(task));
-          dispatch(setStatusAC("succeeded"));
+          dispatch(setStatusAC({status:"succeeded"}));
         } else {
           hendleServerAppError(res.data, dispatch);
         }
@@ -119,7 +119,7 @@ export const updateTaskTC =
     todolistId: string
   ) =>
   (dispatch: Dispatch, getState: () => AppRootStateType) => {
-    dispatch(setStatusAC("loading"));
+    dispatch(setStatusAC({status:"loading"}));
     const state = getState();
     const task = state.tasks[todolistId].find((t) => t.id === taskId);
     if (!task) {
@@ -143,7 +143,7 @@ export const updateTaskTC =
       .then((res) => {
         if (res.data.resultCode === 0) {
           dispatch(updateTaskAC(taskId, domainModel, todolistId));
-          dispatch(setStatusAC("succeeded"));
+          dispatch(setStatusAC({status:"succeeded"}));
         } else {
           hendleServerAppError(res.data, dispatch);
         }
