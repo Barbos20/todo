@@ -6,7 +6,6 @@ import {
 import thunkMiddleware, { ThunkDispatch } from "redux-thunk";
 import { authReducer } from "../features/Login/auth-reducer";
 import {
-  ActionsTasksType,
   tasksReducer
 } from "../features/TodolistsList/tasks-reducer";
 import {
@@ -32,6 +31,11 @@ export const store = configureStore({
 });
 // определить автоматически тип всего объекта состояния
 
+export type AppActionType = ActionsTodolistsType
+export type TypedDispatch = ThunkDispatch<AppRootStateType, any, AppActionType>
+export const useDispatchType = () => {
+    return useDispatch<TypedDispatch>()
+  }
 
 // удалить по завершению 
 export type AppRootStateType = ReturnType<typeof rootReducer>;

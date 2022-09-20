@@ -14,14 +14,14 @@ import Container from "@mui/material/Container";
 import { Menu } from "@mui/icons-material";
 import { LinearDeterminate } from "../components/LinearProgress/LinearProgress";
 import { ErrorSnackbars } from "../components/SnackBar/SnackBar";
-import { AppRootStateType } from "./store";
+import { AppRootStateType, useDispatchType } from "./store";
 import { InitializeAppTC, RequestStatusType } from "./app-reducer";
 import { useSelector } from "react-redux";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "../features/Login/Login";
 import { CircularProgress } from "@mui/material";
 import { logoutTC } from "../features/Login/auth-reducer";
-import { useDispatch } from "react-redux";
+
 
 function App() {
   const status = useSelector<AppRootStateType, RequestStatusType>(
@@ -32,7 +32,7 @@ function App() {
   );
   const isLoggedIn = useSelector<AppRootStateType>(state=> state.auth.isLoggedIn)
 
-const dispatch = useDispatch()
+const dispatch = useDispatchType()
 
 const logOutHendler = useCallback(()=>{
   dispatch(logoutTC())
