@@ -1,6 +1,6 @@
 {
-  "homepage":"http://barbos20.github.io/todolist/",
   "name": "it-incubator-todolist-ts",
+  "homepage": "http://barbos20.github.io/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
