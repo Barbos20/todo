@@ -72,8 +72,8 @@ const isLoggedIn = useSelector<AppRootStateType>(state=> state.auth.isLoggedIn)
                 </a>
               </p>
               <p>or use common test account credentials:</p>
-              <p>Email: free@samuraijs.com</p>
-              <p>Password: free</p>
+              <p>Email: artur.korol.2000.10.25@mail.ru</p>
+              <p>Password: 123456789</p>
             </FormLabel>
             <FormGroup>
               <TextField
