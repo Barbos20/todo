@@ -57,7 +57,7 @@ useEffect(()=>{
     );
   }
   return (
-    <BrowserRouter>
+    <BrowserRouter basename='/todo'>
       <div className="App">
         <ErrorSnackbars />
         <AppBar position="static">
